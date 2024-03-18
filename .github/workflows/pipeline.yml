@@ -9,7 +9,29 @@ on:
   workflow_dispatch:
 
 jobs:
+  test-security:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Use Node.js 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - name: install dependencies
+      run: npm install
+
+      #not part of our homework:
+    - name: Sleep for 60 seconds
+      run: sleep 60
+  
+    - name: Run Security tests
+      run: npm test-npm-security
+
   test-integration:
+    needs: test-security
     runs-on: ubuntu-latest
 
     steps:
@@ -34,24 +56,5 @@ jobs:
 #    - name: Run security tests
 #      run: npm test-npm-security
 
-  test-security:
-    runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Use Node.js 20
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20.x
-        cache: 'npm'
-    - name: install dependencies
-      run: npm install
-
-      #not part of our homework:
-    - name: Sleep for 60 seconds
-      run: sleep 60
-  
-    - name: Run Security tests
-      run: npm test-npm-security
   
