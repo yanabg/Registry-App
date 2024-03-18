@@ -28,7 +28,7 @@ jobs:
       run: sleep 60
   
     - name: Run Security tests
-      run: npm test-npm-security
+      run: npm run test-npm-security
 
   test-integration:
     needs: test-security
