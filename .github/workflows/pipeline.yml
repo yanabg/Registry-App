@@ -1,5 +1,5 @@
 
-name: Build and Test
+name: Build Test Deploy
 
 on:
   push:
@@ -55,6 +55,17 @@ jobs:
       #add security test:
 #    - name: Run security tests
 #      run: npm test-npm-security
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test-integration
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_TOKEN }}
 
 
   
