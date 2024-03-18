@@ -24,5 +24,8 @@ jobs:
     - name: install dependencies
       run: npm install
 
+    - name: Sleep for 60 seconds
+      run: sleep 60
+
     - name: Run integarstion tests
       run: npm test
