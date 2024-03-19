@@ -32,7 +32,6 @@ jobs:
 
   test-integration:
     needs: test-security
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -60,6 +59,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     needs: test-integration
     steps:
       - name: Deploy to production
