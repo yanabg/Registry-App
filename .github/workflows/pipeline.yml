@@ -24,14 +24,15 @@ jobs:
       run: npm install
 
       #not part of our homework:
-    - name: Sleep for 60 seconds
-      run: sleep 60
+    - name: Sleep for 20 seconds
+      run: sleep 20
   
     - name: Run Security tests
       run: npm run test-npm-security
 
   test-integration:
     needs: test-security
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -46,8 +47,8 @@ jobs:
       run: npm install
 
       #not part of our homework:
-    - name: Sleep for 60 seconds
-      run: sleep 60
+    - name: Sleep for 20 seconds
+      run: sleep 20
     
     - name: Run integarstion tests
       run: npm test
