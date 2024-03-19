@@ -24,8 +24,8 @@ jobs:
       run: npm install
 
       #not part of our homework:
-    - name: Sleep for 60 seconds
-      run: sleep 60
+    - name: Sleep for 20 seconds
+      run: sleep 20
   
     - name: Run Security tests
       run: npm run test-npm-security
@@ -46,8 +46,8 @@ jobs:
       run: npm install
 
       #not part of our homework:
-    - name: Sleep for 60 seconds
-      run: sleep 60
+    - name: Sleep for 20 seconds
+      run: sleep 20
     
     - name: Run integarstion tests
       run: npm test
@@ -59,6 +59,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     needs: test-integration
     steps:
       - name: Deploy to production
